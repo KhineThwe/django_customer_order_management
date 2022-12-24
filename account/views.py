@@ -31,14 +31,17 @@ def products(request):
     return render(request,"account/products.html",context)
 
 def order_create(request,pk):
+    OrderFormSet = inlineformset_factory(Customer,Order,fields=('product','status'),extra=10)
     customer = Customer.objects.get(id=pk)
-    form = OrderForm(initial={'customer':customer})
+    # form = OrderForm(initial={'customer':customer})
+    formset = OrderFormSet(queryset=Order.objects.none(),instance=customer)
     if request.method == "POST":
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
+        # form = OrderForm(request.POST)
+        formset = OrderFormSet(request.POST,instance=customer)
+        if formset.is_valid():
+            formset.save()
             return redirect('home')
-    context = {'form':form}
+    context = {'formset':formset}
     return render(request,"account/order_form.html",context)
 
 def update_order(request,pk):
