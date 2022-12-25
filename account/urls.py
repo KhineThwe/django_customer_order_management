@@ -7,6 +7,7 @@ urlpatterns = [
     path('register/', views.registerPage,name='register'),
     path('login/', views.loginPage,name='login'),
     path('logout/', views.logoutPage,name='logout'),
+    path('user/', views.userPage, name="user-page"),
     path('customer/<str:pk_test>/', views.customer,name='customer'),
     path('products/', views.products,name='products'),
     # path('create_orders/', views.order_create,name='create_order'),

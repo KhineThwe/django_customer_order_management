@@ -5,3 +5,8 @@ pip install django-filter
 and also in 
 app
 django_filters
+---------------------------
+for user-roled permission error
+try to solve with this 
+https://stackoverflow.com/questions/61074171/django-the-view-accounts-decorators-wrapper-function-didnt-return-an-httpresp
+-------------------------------------
