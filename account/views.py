@@ -21,6 +21,9 @@ def registerPage(request):
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(
+                user = user,
+            )
             messages.success(request,'Accounts was created for '+ username)
             return redirect('login')
     context = {'form':form}
@@ -73,10 +76,15 @@ def customer(request,pk_test):
     context = {'customer':customer,'orders':orders,'order_count':order_count,'myFilter':myFilter}
     return render(request,"account/customer.html",context)
 
-
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles=['customer'])
 def userPage(request):
-	context = {}
-	return render(request, 'account/user.html', context)
+    order = request.user.customer.order_set.all()
+    total_orders = order.count()
+    delivered = order.filter(status='Delivered').count()
+    pending = order.filter(status='Pending').count()
+    context = {'orders':order,'total_orders':total_orders,'delivered':delivered,'pending':pending}
+    return render(request, 'account/user.html', context)
 
 @login_required(login_url = 'login')
 @allowed_users(allowed_roles=['admin'])
