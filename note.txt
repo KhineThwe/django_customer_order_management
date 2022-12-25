@@ -1,2 +1,7 @@
-#
-One customer to many orders--->one to many rs
+For django filter
+-------------------
+pip install django-filter
+
+and also in 
+app
+django_filters
