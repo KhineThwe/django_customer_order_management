@@ -75,6 +75,17 @@ WSGI_APPLICATION = 'CRM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#db with postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'crm_db',
+#         'USER':'postgres',
+#         'PASSWORD':'7012',
+#         'HOST':'localhost',
+#         'PORT':'5432'
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -123,6 +134,13 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 MEDIA_URL = '/images/'
 MEDIA_ROOT=BASE_DIR/'static/images'
 
+#SMTP Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'khinezar70122107@gmail.com'
+EMAIL_HOST_PASSWORD = 'hfeihncypzvnboph'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
